@@ -9,7 +9,7 @@ EcmaScript6 の Promiseのサンプル
 + JavaScriptのPromiseで同期処理と非同期処理のタイミングを制御する（便利）
 + JavaScript Promiseの本
 
-https://www.wareko.jp/wordpress/?p=16641
-https://www.wareko.jp/wordpress/?p=13612
-http://azu.github.io/promises-book/
++ https://www.wareko.jp/wordpress/?p=16641
++ https://www.wareko.jp/wordpress/?p=13612
++ http://azu.github.io/promises-book/
 
