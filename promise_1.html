@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title></title>
+  <script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/3.2.1/es6-promise.js">
+  </script>
+</head>
+<body>
+
+  <button onclick="calcStart();">計算開始</button>
+  <h1 id="valueNow_ID"></h1>
+
+  <script>
+
+  function calculate(value) {
+    document.getElementById('valueNow_ID').innerHTML = value + '回目[calculate]';
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        // 完了まで数秒かかる重い処理。10%の確率でエラーする。
+        var n = parseInt(Math.random() * 10, 10);
+        if (n === 0) {
+          reject(value + '回目の処理で何かエラー発生');
+        } else {
+          resolve(value + 1);
+        }
+      }, 1000);
+    });
+  };
+
+  function calculate2(value) {
+    document.getElementById('valueNow_ID').innerHTML = value + '回目[calculate2]';
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        // 完了まで数秒かかる重い処理。10%の確率でエラーする。
+        var n = parseInt(Math.random() * 10, 10);
+        if (n === 0) {
+          reject(value + '回目の処理で何かエラー発生');
+        } else {
+          resolve(value + 1);
+        }
+      }, 2000);
+    });
+  };
+
+  function calcStart() {
+    calculate(1)
+    .then(calculate2)
+    .then(calculate)
+    .then(calculate2)
+    .then(successFunc)
+    .catch(errorFunc);
+  }
+
+  function successFunc(result) {
+    document.getElementById('valueNow_ID').innerHTML = result + '完了';
+  };
+
+  function errorFunc(msg) {
+    document.getElementById('valueNow_ID').innerHTML = msg + '中断';
+  }
+
+  </script>
+
+</body>
+</html>

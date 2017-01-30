@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title></title>
+  <script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/3.2.1/es6-promise.js">
+  </script>
+</head>
+<body>
+
+  <button onclick="calcStart();">計算開始</button>
+  <h1 id="valueNow_ID"></h1>
+
+  <script>
+
+  var p1 = new Promise(function (resolve, reject) {
+    setTimeout(resolve, 1000, "one");
+  });
+  var p2 = new Promise(function (resolve, reject) {
+    setTimeout(resolve, 2000, "two");
+  });
+  var p3 = new Promise(function (resolve, reject) {
+    setTimeout(resolve, 3000, "three");
+  });
+  var p4 = new Promise(function (resolve, reject) {
+    setTimeout(resolve, 4000, "four");
+  });
+  var p5 = new Promise(function (resolve, reject) {
+    //setTimeout(reject, 5000, "fiveで何かエラーしたようだ");   // こちらを有効化するとp5の実行が出来ずにpromise.all 成立しない
+    setTimeout(resolve, 5000, "five");                      // こちらを有効化すると全部成功する
+  });
+
+
+  function calcStart() {
+    Promise.all([p1, p2, p3, p4, p5]).then(function (value) {
+      console.log(value);
+      document.getElementById('valueNow_ID').innerHTML = value + '';
+      alert('全部成功:' + value);
+    }, function (value) {
+      console.log(value);
+      document.getElementById('valueNow_ID').innerHTML = value + '回目[calculate2]';
+      alert('何か失敗:' + value);
+    });
+  }
+
+
+  </script>
+
+</body>
+</html>
